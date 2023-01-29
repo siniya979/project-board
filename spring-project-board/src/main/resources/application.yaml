@@ -1,0 +1,33 @@
+debug: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    com.com.shinny.projectboard: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/board
+    username: sh
+    password: thisistest23
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create # jpa 설정이나 엔티티를 자동으로 DDL 만들어줌
+    show-sql: true
+    properties: # 스프링 부트에서 제공하지 않는 하이버네이트 프로퍼티즈 추가.
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100 # 연관 관계가 맵핑되어 있는 한 번에 벌크로 select 할 수 있게 해줌.
+  sql.init.mode: always
+  h2:
+    console:
+      enabled: false
+
+
+
