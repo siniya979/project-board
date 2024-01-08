@@ -31,8 +31,12 @@ public class Article {
     private Long id;
 
     // Setter 를 필드에 따로 세팅하는 이유는 특정 데이터만 client 가 값을 변경하도록 하기 위함.
-    @Setter @Column(nullable = false) private String title; // 제목
-    @Setter @Column(nullable = false, length = 10000) private String content; // 내용
+    @Setter
+    @Column(nullable = false)
+    private String title; // 제목
+    @Setter
+    @Column(nullable = false, length = 10000)
+    private String content; // 내용
 
     // 옵션 설정이 없을 경우 @Column 붙이지 않아도 자동으로 스프링이 붙여준다.
     @Setter private String hashtag; // 해시태그
@@ -44,10 +48,18 @@ public class Article {
 
     // 아래의 데이터는 jpa 가 자동 생성 - jpa auditing
     // @CreateBy 사용자에 대한 정보를 전달하기 위해 JpaConfig 에서 설정.
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일자
-    @CreatedBy @Column(nullable = false, length = 100) private  String createdBy; // 생성자
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정
+    @CreatedDate
+    @Column(nullable = false)
+    private LocalDateTime createdAt; // 생성일자
+    @CreatedBy
+    @Column(nullable = false, length = 100)
+    private  String createdBy; // 생성자
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime modifiedAt; // 수정일시
+    @LastModifiedBy
+    @Column(nullable = false, length = 100)
+    private String modifiedBy; // 수정
 
     protected Article() {}
 

@@ -12,9 +12,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("JPA 연결 테스트 ")
+ /*안 만들어도 되는 테스트지만, 연습 삼아 만드는 테스트.
+ JpaRepository 의 CRUD 는 이미 잘 돌아가는 테스트이기 때문에 작성할 필요가 없다.*/
+@DisplayName("JPA 연결 테스트")
 @Import(JpaConfig.class) // Auditing 인식을 못하기 때문.
-@DataJpaTest
+@DataJpaTest // 자동으로 h2 임베디드 db 를 사용함.
 class JPARepositoryTest {
 
     private final ArticleRepository articleRepository;
