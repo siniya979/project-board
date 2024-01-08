@@ -3,7 +3,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*" # 액츄에이터의 엔드 포인트 중 숨겨져 있는 것들을 모두 활성화 / 개발 단계에서 보고 싶은 모든 기능을 볼 수 있다
 
 logging:
   level:
@@ -15,7 +15,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/board
     username: sh
-    password: thisistest23
+    password: shtestpsw
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     defer-datasource-initialization: true
