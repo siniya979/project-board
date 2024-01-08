@@ -23,9 +23,8 @@ import java.util.Set;
         @Index(columnList = "createdAT"),
         @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Article {
+public class Article extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,21 +44,6 @@ public class Article {
     @OrderBy("id") // id 기준으로 정렬
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
-
-    // 아래의 데이터는 jpa 가 자동 생성 - jpa auditing
-    // @CreateBy 사용자에 대한 정보를 전달하기 위해 JpaConfig 에서 설정.
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdAt; // 생성일자
-    @CreatedBy
-    @Column(nullable = false, length = 100)
-    private  String createdBy; // 생성자
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy; // 수정
 
     protected Article() {}
 
