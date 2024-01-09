@@ -1,5 +1,6 @@
 package com.shinny.projectboard.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Disabled("Spring Data Rest 통합 테스트는 불필요하므로 제외시킴") // 해당 테스트 클래스에 밑에 있는 모든 유닛 테스트들은 그 메소드들을 실행시키지 않는다.
 @DisplayName("Data REST TEST")
 @Transactional // 테스트에 붙은 Transactional 은 rollback 이 기본값
 @AutoConfigureMockMvc
