@@ -30,8 +30,36 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation "com.querydsl:querydsl-jpa"
+    implementation "com.querydsl:querydsl-core"
+    implementation "com.querydsl:querydsl-collections"
+    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api" // java.lang.NoClassDefFoundError ( javax.annotation.Generated ) 대응 코드
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api" // java.lang.NoClassDefFoundError ( javax.annotation.Entity ) 대응 코드
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// queryDsl 설정부
+// 설정을 하는 이유는 기본값으로 두면 build 파일에 QType 엔티티가 생성되는데
+// 그레이들 빌드 시, 아이디 빌드 시 스캔하는 영역의 차이가 생겨서 그레이들이 빌드할 때 스캔한 파일과
+// 인텔리제이가 빌드할 때 스캔된 파일의 영역 중복이 생겨 충돌이 발생할 수 있다 이런 문제를 해결하기 위해 임의로 경로를 설정해주었다.
+def generated = 'src/main/generated'
+
+// querydsl QClass 파일 생성 위치 지정
+tasks.withType(JavaCompile){
+    options.getGeneratedSourceOutputDirectory().set(file(generated))
+}
+
+// java source set 에 querydsl QClass 위치 추가
+sourceSets{
+    main.java.srcDirs += [ generated ]
+}
+
+// gradle clean 시에 QClass 디렉토리 삭제
+clean{
+    delete file(generated)
 }
