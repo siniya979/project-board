@@ -29,6 +29,8 @@ spring:
     rest:
       base-path: /api
       detection-strategy: annotated
+  thymeleaf3: # 사용자 정의 설정이기 때문에 자동완성이 안되는데 configuration-processor 추가로 자동완성 가능해짐
+    decoupled-logic: true
 
 
 
