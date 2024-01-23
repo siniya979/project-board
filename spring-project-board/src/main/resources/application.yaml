@@ -24,6 +24,7 @@ spring:
     properties: # 스프링 부트에서 제공하지 않는 하이버네이트 프로퍼티즈 추가.
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100 # 연관 관계가 맵핑되어 있는 한 번에 벌크로 select 할 수 있게 해줌.
+    open-in-view: false
   sql.init.mode: always
   data:
     rest:
