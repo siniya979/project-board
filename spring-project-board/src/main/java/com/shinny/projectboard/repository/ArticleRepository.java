@@ -18,7 +18,12 @@ public interface ArticleRepository extends
         QuerydslPredicateExecutor<Article>, // 모든 필드들에 대한 검색이 열려있음
         QuerydslBinderCustomizer<QArticle> {
 
-    Page<Article> findByTitle(String title, Pageable pageable);
+    Page<Article> findByTitleContaining(String title, Pageable pageable);
+    Page<Article> findByContentContaining(String content, Pageable pageable);
+    Page<Article> findByUserAccount_UserIdContaining(String userId, Pageable pageable);
+    Page<Article> findByUserAccount_NicknameContaining(String nickname, Pageable pageable);
+
+    Page<Article> findByHashtag(String hashtag, Pageable pageable);
 
     // java8 이후로 인터페이스에 default 메소드가 가능해짐
     @Override
